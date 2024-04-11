@@ -1,4 +1,4 @@
-# 프로젝트명
+# Project name
 > 간략한 프로젝트 소개 문구를 작성합니다.
 
 [![NPM Version][npm-image]][npm-url]
@@ -10,10 +10,10 @@
 ![](../header.png)
 
 
-## 개발 환경 설정
+## Development Environment Settings
 
 
-## 업데이트 내역
+## Update history
 
 * 0.0.1
     * 작업 진행 중
