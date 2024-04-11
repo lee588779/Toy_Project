@@ -18,7 +18,7 @@
 * 0.0.1
     * 작업 진행 중
 
-## 기여 방법
+## How to contribute
 
 1. Fork the (<https://github.com/yourname/yourproject/fork>).
 2. Create a new branch with the command (`git checkout -b feature/fooBar`).
