@@ -6,8 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Getter
+@Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Article {
     @Id
@@ -23,11 +23,6 @@ public class Article {
 
     @Builder
     public Article(String title, String content){
-        this.title = title;
-        this.content = content;
-    }
-
-    public void update(String title, String content){
         this.title = title;
         this.content = content;
     }
