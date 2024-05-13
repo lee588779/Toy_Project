@@ -18,6 +18,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+
 @SpringBootTest
 @AutoConfigureMockMvc
 class BlogApiControllerTest {
@@ -50,5 +55,16 @@ class BlogApiControllerTest {
 
         final String requestBody = objectMapper.writeValueAsString(userRequest);
 
+        ResultActions result = mockMvc.perform(post(url)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(requestBody));
+
+        result.andExpect(status().isCreated());
+
+        List<Article> articles = blogRepository.findAll();
+
+        assertThat(articles.size()).isEqualTo(1);
+        assertThat(articles.get(0).getTitle()).isEqualTo(title);
+        assertThat(articles.get(0).getContent()).isEqualTo(content);
     }
 }
