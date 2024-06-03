@@ -52,7 +52,7 @@ if (createButton) {
             })
         })
             .then(() => {
-                alert('생성 완료.');
+                alert('등록 완료.');
                 location.replace('/articles');
             });
     });
