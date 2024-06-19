@@ -11,3 +11,6 @@ spring:
   h2:
     console:
       enabled: true
+jwt:
+  issuer: testuser@gamil.com
+  secret_key: study-springboot
