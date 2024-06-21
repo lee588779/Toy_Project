@@ -1,8 +1,6 @@
 package me.donghyunLee.springbootdeveloper.config.jwt;
 
-import io.jsonwebtoken.Header;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import me.donghyunLee.springbootdeveloper.domain.User;
 import org.springframework.stereotype.Service;
@@ -32,5 +30,28 @@ public class TokenProvider {
                 .claim("id", user.getId())
                 .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
                 .compact();
+    }
+
+    public boolean validToken(String token){
+        try{
+            Jwts.parser()
+                    .setSigningKey(jwtProperties.getSecretKey())
+                    .parseClaimsJws(token);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+    }
+
+    public Long getAuthentication(String token){
+        Claims claims = getClaims(token);
+        return claims.get("id", Long.class);
+    }
+
+    private Claims getClaims(String token){
+        return Jwts.parser()
+                .setSigningKey(jwtProperties.getSecretKey())
+                .parseClaimsJws(token)
+                .getBody();
     }
 }
