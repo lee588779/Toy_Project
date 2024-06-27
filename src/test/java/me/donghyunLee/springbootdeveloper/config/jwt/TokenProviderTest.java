@@ -3,13 +3,16 @@ package me.donghyunLee.springbootdeveloper.config.jwt;
 import io.jsonwebtoken.Jwts;
 import me.donghyunLee.springbootdeveloper.domain.User;
 import me.donghyunLee.springbootdeveloper.repository.UserRepository;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.Duration;
 import java.util.Date;
+import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -51,6 +54,44 @@ public class TokenProviderTest {
         boolean result = tokenProvider.validToken(token);
 
         assertThat(result).isFalse();
+    }
+
+    @DisplayName("validToken(): 유효한 토큰일 때 유효성 검증 성공")
+    @Test
+    void validToken_valedToken(){
+        String token = JwtFactory.withDefaultValues().createToken(jwtProperties);
+
+        boolean result = tokenProvider.validToken(token);
+
+        assertThat(result).isTrue();
+    }
+
+    @DisplayName("getAuthentication(): 토큰 기반으로 인증 정보 획득")
+    @Test
+    void getAuthentication(){
+        String userEmail = "user@email.com";
+        String token = JwtFactory.builder()
+                .subject(userEmail)
+                .build()
+                .createToken(jwtProperties);
+
+        Authentication authentication = tokenProvider.getAuthentication(token);
+
+        assertThat(((UserDetails) authentication.getPrincipal()).getUsername()).isEqualTo(userEmail);
+    }
+
+    @DisplayName("getUserId(): 토큰으로 유저 ID 획득 가능")
+    @Test
+    void getUserId(){
+        Long userId = 1L;
+        String token = JwtFactory.builder()
+                .claims(Map.of("id", userId))
+                .build()
+                .createToken(jwtProperties);
+
+        Long userIdByToken = tokenProvider.getUserId(token);
+
+        assertThat(userIdByToken).isEqualTo(userId);
     }
 
 
