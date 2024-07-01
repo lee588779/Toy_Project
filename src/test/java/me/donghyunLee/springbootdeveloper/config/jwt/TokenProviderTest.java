@@ -3,11 +3,11 @@ package me.donghyunLee.springbootdeveloper.config.jwt;
 import io.jsonwebtoken.Jwts;
 import me.donghyunLee.springbootdeveloper.domain.User;
 import me.donghyunLee.springbootdeveloper.repository.UserRepository;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.Duration;
