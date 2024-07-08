@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface RefreshTokenRepository {
     Optional<RefreshToken>findByUserId(Long UserId);
-    Optional<RefreshToken>RefreshToken(String refreshToken);
+    Optional<RefreshToken>findByRefreshToken(String refreshToken);
 }
