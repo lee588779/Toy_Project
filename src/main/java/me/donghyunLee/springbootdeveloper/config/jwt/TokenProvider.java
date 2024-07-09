@@ -18,12 +18,12 @@ import java.util.Set;
 public class TokenProvider {
     private final JwtProperties jwtProperties;
 
-    public String generateToken(User user, Duration expiredAt){
+    public String generateToken(User user, Duration expiredAt) {
         Date now = new Date();
         return makeToken(new Date(now.getTime() + expiredAt.toMillis()), user);
     }
 
-    private String makeToken(Date expiry, User user){
+    private String makeToken(Date expiry, User user) {
         Date now = new Date();
 
         return Jwts.builder()
@@ -37,13 +37,14 @@ public class TokenProvider {
                 .compact();
     }
 
-    public boolean validToken(String token){
-        try{
+    public boolean validToken(String token) {
+        try {
             Jwts.parser()
                     .setSigningKey(jwtProperties.getSecretKey())
                     .parseClaimsJws(token);
+
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
@@ -55,7 +56,7 @@ public class TokenProvider {
         return new UsernamePasswordAuthenticationToken(new org.springframework.security.core.userdetails.User(claims.getSubject(), "", authorities), token, authorities);
     }
 
-    public Long getUserId(String token){
+    public Long getUserId(String token) {
         Claims claims = getClaims(token);
         return claims.get("id", Long.class);
     }

@@ -1,6 +1,5 @@
 package me.donghyunLee.springbootdeveloper.config.jwt;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -8,10 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.Duration;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
-import java.util.Objects;
 
 import static java.util.Collections.emptyMap;
 
@@ -25,9 +22,9 @@ public class JwtFactory {
     @Builder
     public JwtFactory(String  subject, Date issuedAt, Date expiration, Map<String, Object> claims){
         this.subject = subject != null ? subject : this.subject;
-        this.issuedAt = subject != null ? issuedAt : this.issuedAt;
-        this.expiration = subject != null ? expiration : this.expiration;
-        this.claims = subject != null ? claims : this.claims;
+        this.issuedAt = issuedAt != null ? issuedAt : this.issuedAt;
+        this.expiration = expiration != null ? expiration : this.expiration;
+        this.claims = claims != null ? claims : this.claims;
     }
 
     public static JwtFactory withDefaultValues() {
