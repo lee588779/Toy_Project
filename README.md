@@ -1,5 +1,5 @@
 # Free Develop
-> 자유롭게 개발하고 싶은 기능들을 Springboot3 기반으로 하여 얼마든지 개발하는 곳
+> 자유롭게 개발하고 싶은 기능들을 Springboot3 기반으로 하여 개발 중
 
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
