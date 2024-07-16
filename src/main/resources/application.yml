@@ -11,6 +11,16 @@ spring:
   h2:
     console:
       enabled: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: #입력 대기
+            client-secret: #입력 대기
+            scope:
+              - email
+              - profile
 jwt:
   issuer: testuser@gamil.com
   secret_key: study-springboot
