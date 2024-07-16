@@ -5,7 +5,6 @@
 [![Build Status][travis-image]][travis-url]
 [![Downloads Stats][npm-downloads]][npm-url]
 
-한 두 문단으로 프로젝트 소개 글을 작성합니다.
 
 ![](../header.png)
 
@@ -15,8 +14,13 @@
 
 ## Update history
 
-* 0.0.1
-    * 작업 진행 중
+기본적인 웹 구현 완료
+
+게시글 C, U, D 기능 구현
+
+로그인,로그아웃 구현
+
+챗봇 구현 예정
 
 ## How to contribute
 
