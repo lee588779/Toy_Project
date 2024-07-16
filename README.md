@@ -12,7 +12,9 @@
 ## Development Environment Settings
 
 JDK 21.0.2
+
 SpringFramework.boot 3.0.13
+
 Spring dependency 1.1.0
 
 ## Update history
